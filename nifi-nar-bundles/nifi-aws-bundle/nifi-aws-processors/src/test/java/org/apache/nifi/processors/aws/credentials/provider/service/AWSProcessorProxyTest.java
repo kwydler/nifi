@@ -67,4 +67,14 @@ public class AWSProcessorProxyTest {
         runner.setProperty(AbstractAWSProcessor.PROXY_HOST, "proxyHost");
         runner.assertValid();
     }
+
+    @SuppressWarnings("deprecation")
+    @Test
+    public void testProxyHostAndPortExpression() throws Throwable {
+        runner.setVariable("PROXY_HOST_PORT", "1");
+        runner.setVariable("PROXY_HOST", "proxyHost");
+        runner.setProperty(AbstractAWSProcessor.PROXY_HOST_PORT, "${PROXY_HOST_PORT}");
+        runner.setProperty(AbstractAWSProcessor.PROXY_HOST, "${PROXY_HOST}");
+        runner.assertValid();
+    }
 }
